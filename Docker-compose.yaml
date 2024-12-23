@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web_app:
+    # build: ./web_app     if dockerfile.yaml is located in a directory other than the root of the project
+    build: .
+    ports:
+      - "7777:7777"
+    environment:
+      PSQL_USER: ${PSQL_USER}
+      PSQL_PASSWORD: ${PSQL_PASSWORD}
+      PSQL_HOST: postgres
+      PSQL_PORT: ${PSQL_PORT}
+      PSQL_DEFAULT_DB: ${PSQL_DEFAULT_DB}
+    depends_on:
+      - postgres
+    volumes:
+      - .:/web_app
+      
+  postgres:
+    image: postgres:15
+    restart: always
+    ports:
+      - "${PSQL_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${PSQL_USER}
+      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+      POSTGRES_DEFAULT_DB: ${PSQL_DEFAULT_DB}
+    volumes:
+      - ./data:/var/lib/postgresql/data  # Persistent data storage (postgres_data is "mounted" to /var/lib/postgresql/data)
+
+volumes:
+  postgres_data: {}
