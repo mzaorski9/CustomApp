@@ -1,0 +1,50 @@
+
+<!-- Hidden Form -->
+<div id="applyForm" style="display: none; margin-top: 20px;">
+    <!-- params from the form will be send as ImmutableDict (flask) with POST method, so key-values will be contained in request body; 
+    'name' as a key, and 'users input' as a value; url_for('submit_form') instead of '/submit_form' ensures that URL is generated dynamically
+    which prevents us from changing the endpoint (improvement in case of application enlargement) -->
+    <form action="{{ url_for('submit_form')}}" method="post">
+        <input type="hidden" name="job_id" value= "{{ job['id'] }}">
+        <div class="bottom row">
+            <div class="form-group col-md-6">
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" name="name" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputSurname" >Surname </label>
+                <input type="text" class="form-control" id="inputSurname" name="surname" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" name="address1">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" name="address2">
+        </div>
+        <div class="bottom row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control" name="state">
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="number" class="form-control" id="inputZip" name="zip_code">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="text" class="form-control" id="inputEmail" name="email" required><br><br>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Send</button>
+    </form>
+</div>
