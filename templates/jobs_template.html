@@ -15,6 +15,11 @@
         {% endif %}
     </div>
     <div class="col-6">
-        <button class="btn btn-success mt-4" style="--bs-btn-font-size: 14px";> apply </button>
+        <button 
+            class="btn btn-success mt-4" 
+            style="--bs-btn-font-size: 14px" 
+            onclick="window.location.href='/job/{{ job['id'] }}'">
+            Get more info
+        </button>
     </div>
 </div>
